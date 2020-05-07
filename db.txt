@@ -1,0 +1,38 @@
+create table pencari(
+	id_user integer primary key AUTO_INCREMENT,
+	u_username varchar(20),
+	u_password varchar(33),
+	u_email varchar(30),
+	u_kontak varchar(15)
+);
+create table pemilik(
+	id_pemilik integer primary key AUTO_INCREMENT,
+	p_username varchar(20),
+	p_password varchar(33),
+	p_email varchar(30),
+	p_kontak varchar(15)
+);
+create table datakos(
+	id_kos integer primary key AUTO_INCREMENT,
+	fk_pemilik integer,
+	dk_nama_kos varchar(20),
+	dk_alamat varchar(50)
+);
+create table ruangan(
+	id_ruangan integer primary key AUTO_INCREMENT,
+	fk_kos integer,
+	fk_user integer,
+	r_ukuran_kmr varchar(10),
+	r_harga_kmr integer,
+	r_ac char(1),
+	r_kmr_mandi char(2)
+);
+
+alter table datakos add constraint fk1_Id_pemilik
+foreign key (fk_pemilik) references (id_pemilik);
+
+alter table ruangan add constraint fk1_Id_user
+foreign key (fk_user) references anak(id_anak);
+
+alter table ruangan add constraint fk1_id_kos
+foreign key (fk_kos) references pengantar(id_kos);
